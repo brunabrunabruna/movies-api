@@ -14,3 +14,20 @@ Timestamp: Tue Aug 08 2023 13:34:21 GMT+0200 (Central European Summer Time)
 URL: / 
 Timestamp: Tue Aug 08 2023 13:34:23 GMT+0200 (Central European Summer Time) 
  
+::ffff:127.0.0.1 - - [11/Aug/2023:13:50:49 +0000] "GET / HTTP/1.1" 200 56 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:13:50:52 +0000] "GET / HTTP/1.1" 200 56 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:13:50:56 +0000] "GET /secreturl HTTP/1.1" 200 89 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:14:25:31 +0000] "GET /secreturl HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:01:57 +0000] "GET /secreturl HTTP/1.1" 200 89 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:01:57 +0000] "GET /favicon.ico HTTP/1.1" 404 150 "http://localhost:8080/secreturl" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:01:58 +0000] "GET /secreturl HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:11:31 +0000] "GET /secreturl HTTP/1.1" 404 148 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:11:36 +0000] "GET / HTTP/1.1" 200 56 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:11:36 +0000] "GET /favicon.ico HTTP/1.1" - - "http://localhost:8080/" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:11:42 +0000] "GET /movies HTTP/1.1" 200 436 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:13:00 +0000] "GET /puplic HTTP/1.1" 404 145 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:13:05 +0000] "GET /public HTTP/1.1" 404 145 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:13:24 +0000] "GET /documentation HTTP/1.1" 404 152 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:13:55 +0000] "GET / HTTP/1.1" 200 18 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:13:56 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:14:05 +0000] "GET /documentation.html HTTP/1.1" 200 603 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
