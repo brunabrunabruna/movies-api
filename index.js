@@ -57,7 +57,7 @@ const accessLogStream = fs.createWriteStream(path.join(__dirname, "log.txt"), {
 // app.use(morgan("common"));
 app.use(morgan("combined", { stream: accessLogStream }));
 
-//shortcut so i dont have to res.send() all files in the public folder
+//shortcut so i dont have to res.send() all files in the public folder (right now just documentation.html)
 app.use(express.static("public"));
 
 app.get("/", (req, res) => {

@@ -31,3 +31,8 @@ Timestamp: Tue Aug 08 2023 13:34:23 GMT+0200 (Central European Summer Time)
 ::ffff:127.0.0.1 - - [11/Aug/2023:15:13:55 +0000] "GET / HTTP/1.1" 200 18 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
 ::ffff:127.0.0.1 - - [11/Aug/2023:15:13:56 +0000] "GET / HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
 ::ffff:127.0.0.1 - - [11/Aug/2023:15:14:05 +0000] "GET /documentation.html HTTP/1.1" 200 603 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:59:44 +0000] "GET /documentation.html HTTP/1.1" 200 603 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:59:44 +0000] "GET /favicon.ico HTTP/1.1" - - "http://localhost:8080/documentation.html" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [11/Aug/2023:15:59:50 +0000] "GET / HTTP/1.1" 200 18 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [14/Aug/2023:08:02:28 +0000] "GET / HTTP/1.1" 200 18 "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
+::ffff:127.0.0.1 - - [14/Aug/2023:08:03:12 +0000] "GET /documentation.html HTTP/1.1" 304 - "-" "Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/116.0"
