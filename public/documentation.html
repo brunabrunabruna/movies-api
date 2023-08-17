@@ -4,15 +4,53 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <style>
+      h3 {
+        font-weight: 600;
+      }
+    </style>
   </head>
   <body>
-    <p>
+    <h1>
       <b>Movie API App</b>
       Goal: To build the server-side component of a “movies” web application.
       The web application will provide users with access to information about
       different movies, directors, and genres. Users will be able to sign up,
       update their personal information, and create a list of their favorite
       movies
-    </p>
+    </h1>
+
+    <h2>URL endpoints</h2>
+
+    <h3>GET: /movies Return a list of ALL movies to the user</h3>
+    <h3>
+      GET:movies/:title Return data (description, genre, director, image URL,
+      whether it’s featured or not) about a single movie by title to the user
+    </h3>
+    <h3>
+      GET: movies/genres/:genreName Return data about a genre (description) by
+      name/title (e.g., “Thriller”)
+    </h3>
+    <h3>
+      GET /movies/:directors Return data about a director (bio, birth year,
+      death year) by name.
+    </h3>
+    <h3>POST /users Allow new users to register</h3>
+    <p>example request body, in json</p>
+    <p>{ "name": "new user" ,"favoriteMovies": [] }</p>
+    <p>Format of the response data: json</p>
+    <h3>PUT /users/:id Allow users to update their user info (username)</h3>
+    <p>example request body, in json</p>
+    <p>{ "name": "updated name"}</p>
+    <p>Format of the response data: json</p>
+    <h3>
+      POST /users/:id/:movieTitle Allow users to add a movie to their list of
+      favorites showing only a text that a movie has been added
+    </h3>
+    <h3>
+      DELETE users/:id/:movieTitle Allow users to remove a movie from their list
+      of favorites
+    </h3>
+    <h3>DELETE users/:id Allow existing users to deregister</h3>
   </body>
 </html>
