@@ -1,0 +1,125 @@
+Movies: title, Description, GenreID, DiretorID, ImageUrl, Featured 
+
+
+//// 1 Spirited Away
+
+During her family's move to the suburbs, a sullen 10-year-old girl wanders into a world ruled by gods, witches and spirits, a world where humans are changed into beasts.
+
+1 - adventure
+
+1 - hayao
+
+https://www.imdb.com/title/tt0245429/mediaviewer/rm4207852801/?ref_=tt_ov_i
+
+true
+
+///// 2 The Wind Rises
+
+A look at the life of Jiro Horikoshi, the man who designed Japanese fighter planes during World War II.
+
+2- Biography
+
+1- hayao
+
+https://www.imdb.com/title/tt2013293/mediaviewer/rm2695221760/?ref_=tt_ov_i
+
+false
+
+//// 3 My Neighbour Totoro
+
+When two girls move to the country to be near their ailing mother, they have adventures with the wondrous forest spirits who live nearby.
+
+3 - fantasy
+
+1- hayao
+
+https://www.imdb.com/title/tt0096283/mediaviewer/rm2982441728/?ref_=tt_ov_i
+
+true
+
+//// 4 Tales from Earthsea
+
+In a mythical land, a man and a young boy investigate a series of unusual occurrences.
+
+1- adventure
+
+3- goro
+
+https://www.imdb.com/title/tt0495596/mediaviewer/rm601537793/?ref_=tt_ov_i
+
+false
+
+//// 5  Kiki's Delivery Service
+
+A young witch, on her mandatory year of independent life, finds fitting into a new community difficult while she supports herself by running an air courier service.
+
+3 - fantasy
+
+1- hayao
+
+https://www.imdb.com/title/tt0097814/mediaviewer/rm315211009/?ref_=tt_ov_i
+
+true
+
+//// 6 Princess Mononoke
+
+On a journey to find the cure for a Tatarigami's curse, Ashitaka finds himself in the middle of a war between the forest gods and Tatara, a mining colony. In this quest he also meets San, the Mononoke Hime.
+
+1- adventure
+
+1- hayao
+
+https://www.imdb.com/title/tt0119698/mediaviewer/rm2697706753/?ref_=tt_ov_i
+
+false
+
+///// 7 Howl's Moving Castle
+
+When an unconfident young woman is cursed with an old body by a spiteful witch, her only chance of breaking the spell lies with a self-indulgent yet insecure young wizard and his companions in his legged, walking castle.
+
+3- fantasy
+
+1 -hayao
+
+https://www.imdb.com/title/tt0347149/mediaviewer/rm2426685696/?ref_=tt_ov_i
+
+true
+
+//// 8 When Marnie Was There
+
+Due to 12-year-old Anna's asthma, she's sent to stay with relatives of her guardian in the Japanese countryside. She likes to be alone, sketching. She befriends Marnie. Who is the mysterious, blonde Marnie?
+
+4 - drama
+
+4 - Hiromasa
+
+https://www.imdb.com/title/tt3398268/mediaviewer/rm2969050624/?ref_=tt_ov_i
+
+false
+
+////// 9 Nausicaä of the Valley of the Wind
+
+Warrior and pacifist Princess Nausicaä desperately struggles to prevent two warring nations from destroying themselves and their dying planet.
+
+1 - adventure
+
+1 - hayao
+
+https://www.imdb.com/title/tt0087544/mediaviewer/rm2150611969/?ref_=tt_ov_i
+
+false
+
+///// 10 The Cat Returns
+
+After helping a cat, a seventeen-year-old girl finds herself involuntarily engaged to a cat Prince in a magical world where her only hope of freedom lies with a dapper cat statuette come to life.
+
+1 - adventure
+
+2 - Hiroyuki
+
+https://www.imdb.com/title/tt0347618/mediaviewer/rm4040736001/?ref_=tt_ov_i
+
+ true
+
+
+
