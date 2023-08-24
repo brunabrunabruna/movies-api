@@ -1,0 +1,5 @@
+{"_id":{"$oid":"64e61c3379ededeb513f759c"},"username":"bruna123","password":"djsflks","email":"bruna@email.com","birthday":{"$date":"2000-01-21T00:00:00Z"}}
+{"_id":{"$oid":"64e61c3379ededeb513f759d"},"username":"flix","password":"fsdssdfks","email":"flix@email.com","birthday":{"$date":{"$numberLong":"-625968000000"}}}
+{"_id":{"$oid":"64e61c3379ededeb513f759e"},"username":"yo123","password":"28743hz","email":"drlgjg@email.com","birthday":{"$date":"2007-11-21T00:00:00Z"}}
+{"_id":{"$oid":"64e61c3379ededeb513f759f"},"username":"testuser","password":"KHKSJFH","email":"tetstttt@email.com","birthday":{"$date":{"$numberLong":"-204768000000"}}}
+{"_id":{"$oid":"64e61c3379ededeb513f75a0"},"username":"nonamee","password":"112jk3","email":"floooo@email.com","birthday":{"$date":"1980-03-25T00:00:00Z"}}
