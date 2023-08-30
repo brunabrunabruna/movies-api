@@ -1,24 +1,26 @@
-const passport = require("passport");
-const localStrategy = require("passport-local").Strategy;
-const models = require("./models");
-const passportJWT = require("passport-jwt");
-const { model } = require("mongoose");
+const passport = require("passport"),
+  LocalStrategy = require("passport-local").Strategy,
+  Models = require("./models.js"),
+  passportJWT = require("passport-jwt");
 
-let Users = models.User;
-let JWTSrategy = passportJWT.Strategy;
-let extractJWT = passportJWT.ExtractJWT;
+let Users = Models.User,
+  JWTStrategy = passportJWT.Strategy,
+  ExtractJWT = passportJWT.ExtractJwt;
 
 passport.use(
-  new localStrategy(
-    { usernameField: "username", passwordField: "password" },
+  new LocalStrategy(
+    {
+      usernameField: "Username",
+      passwordField: "Password",
+    },
     async (username, password, callback) => {
       console.log(`${username} ${password}`);
-      await Users.findOne({ username: username })
+      await Users.findOne({ Username: username })
         .then((user) => {
           if (!user) {
-            console.log(`incorrect username`);
+            console.log("incorrect username");
             return callback(null, false, {
-              message: "incorrect username or password",
+              message: "Incorrect username or password.",
             });
           }
           console.log("finished");
@@ -35,9 +37,9 @@ passport.use(
 );
 
 passport.use(
-  new JWTSrategy(
+  new JWTStrategy(
     {
-      jwtFromRequest: extractJWT.fromAuthHeaderAsBearerToken(),
+      jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
       secretOrKey: "your_jwt_secret",
     },
     async (jwtPayload, callback) => {
