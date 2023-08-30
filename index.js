@@ -138,26 +138,35 @@ app.post("/users", async (request, response) => {
     });
 });
 //update user by username
-app.put("/users/:username", async (request, response) => {
-  await Users.findOneAndUpdate(
-    { username: request.params.username },
-    {
-      $set: {
-        username: request.body.username,
-        password: request.body.password,
-        email: request.body.email,
-        birthday: request.body.birthday,
-      },
-    },
-    { new: true }
-  ).then((user) => {
-    if (!user) {
-      response.status(500).send(`${request.params.username} not found`);
-    } else {
-      response.status(201).json(user);
+app.put(
+  "/users/:username",
+  passport.authenticate("jwt", { session: false }),
+  async (request, response) => {
+    //CONDITION TO CHECK USERNAME HERE
+    if (request.user.username !== request.params.username) {
+      return response.status(400).send("permission denied");
     }
-  });
-});
+
+    await Users.findOneAndUpdate(
+      { username: request.params.username },
+      {
+        $set: {
+          username: request.body.username,
+          password: request.body.password,
+          email: request.body.email,
+          birthday: request.body.birthday,
+        },
+      },
+      { new: true }
+    ).then((user) => {
+      if (!user) {
+        response.status(500).send(`${request.params.username} not found`);
+      } else {
+        response.status(201).json(user);
+      }
+    });
+  }
+);
 
 //add favorite movie to users list
 
