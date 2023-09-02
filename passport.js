@@ -1,5 +1,5 @@
 const passport = require("passport");
-const localStrategy = require("passport-local").Strategy;
+const LocalStrategy = require("passport-local").Strategy;
 const models = require("./models");
 const passportJWT = require("passport-jwt");
 const { model } = require("mongoose");
@@ -9,7 +9,7 @@ let JWTSrategy = passportJWT.Strategy;
 let ExtractJWT = passportJWT.ExtractJwt;
 
 passport.use(
-  new localStrategy(
+  new LocalStrategy(
     { usernameField: "username", passwordField: "password" },
     async (username, password, callback) => {
       console.log(`${username} ${password}`);
@@ -21,12 +21,17 @@ passport.use(
               message: "incorrect username or password",
             });
           }
+
+          if (!user.validatePassword(password)) {
+            console.log("incorrect password!");
+            return callback(null, false, { message: "incorrect password!!" });
+          }
           console.log("finished");
           return callback(null, user);
         })
         .catch((error) => {
           if (error) {
-            console.log(error);
+            console.log(`local strategy error:${error}`);
             return callback(error);
           }
         });

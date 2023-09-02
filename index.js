@@ -4,10 +4,10 @@ const fs = require("fs");
 const path = require("path");
 const { request } = require("http");
 const bodyParser = require("body-parser");
-const uuid = require("uuid");
 const mongoose = require("mongoose");
 const Models = require("./models");
 const { error } = require("console");
+const { check, validationResult } = require("express-validator");
 
 const Movies = Models.Movie;
 const Users = Models.User;
@@ -19,7 +19,25 @@ mongoose.connect("mongodb://localhost:27017/cfDB", {
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+const cors = require("cors");
 
+let allowedOrigins = ["http://localhost:8080"];
+app.use(
+  cors({
+    origin: (origin, callback) => {
+      if (!origin) {
+        return callback(null, true);
+      }
+      if (allowedOrigins.indexOf(origin) === -1) {
+        let message =
+          "the CORS policy for this application doesnt allow access from origin " +
+          origin;
+        return callback(new Error(message), false);
+      }
+      return callback(null, true);
+    },
+  })
+);
 let auth = require("./auth")(app);
 const passport = require("passport");
 require("./passport");
@@ -109,34 +127,54 @@ app.get("/users", async (request, response) => {
 });
 
 // Allow new users to register;
-app.post("/users", async (request, response) => {
-  await Users.findOne({ username: request.body.username })
-    .then((user) => {
-      if (user) {
-        return response
-          .status(400)
-          .send(`${request.body.username} already exists`);
-      } else {
-        Users.create({
-          username: request.body.username,
-          password: request.body.password,
-          email: request.body.email,
-          birthday: request.body.birthday,
-        })
-          .then((user) => {
-            response.status(201).json(user);
+app.post(
+  "/users",
+  [
+    // check([field in req.body to validate], [error message if validation fails]).[validation method]();
+    check("username", "username is required").isLength({ min: 5 }),
+    check(
+      "username",
+      "username contains non alphanumeric characters - not allowed!"
+    ).isAlphanumeric(),
+    check("password", "password is required").not().isEmpty(),
+    check("email", "email is not valid").isEmail(),
+  ],
+  async (request, response) => {
+    //check validation object for errors
+    let errors = validationResult(request);
+    if (!errors.isEmpty()) {
+      return response.status(422).json({ errors: errors.array() });
+    }
+
+    let hashedPassword = Users.hashPassword(request.body.password);
+    await Users.findOne({ username: request.body.username })
+      .then((user) => {
+        if (user) {
+          return response
+            .status(400)
+            .send(`${request.body.username} already exists`);
+        } else {
+          Users.create({
+            username: request.body.username,
+            password: hashedPassword,
+            email: request.body.email,
+            birthday: request.body.birthday,
           })
-          .catch((err) => {
-            console.log(err);
-            response.status(500).send(`error: ${err}`);
-          });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-      response.status(500).send(`error: ${err}`);
-    });
-});
+            .then((user) => {
+              response.status(201).json(user);
+            })
+            .catch((err) => {
+              console.log(err);
+              response.status(500).send(`error: ${err}`);
+            });
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+        response.status(500).send(`error: ${err}`);
+      });
+  }
+);
 //update user by username
 app.put(
   "/users/:username",
@@ -222,6 +260,7 @@ app.use((err, req, res, next) => {
   res.status(500).send("something broke");
 });
 
-app.listen(8080, () => {
-  console.log("Your app is listening on port 8080.");
+const port = process.env.PORT || 8080;
+app.listen(port, "0.0.0.0", () => {
+  console.log("listening on port" + port);
 });
