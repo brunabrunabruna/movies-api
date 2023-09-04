@@ -7,18 +7,30 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Models = require("./models");
 const { error } = require("console");
+
+//validates username, pw, etc. user imputs on the server side. To make sure there is no malicious code, and that the imputs follow the desired constrains.
 const { check, validationResult } = require("express-validator");
 
 const Movies = Models.Movie;
 const Users = Models.User;
 
-mongoose.connect("mongodb://localhost:27017/cfDB", {
+//connects to the database
+// mongoose.connect("mongodb://localhost:27017/cfDB", {
+//   useNewUrlParser: true,
+//   useUnifiedTopology: true,
+// });
+
+//connects to online mongoDB database
+mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
+
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+//cors controls which domains have access to my api, right now just localhost does
 const cors = require("cors");
 
 let allowedOrigins = ["http://localhost:8080"];
@@ -264,3 +276,7 @@ const port = process.env.PORT || 8080;
 app.listen(port, "0.0.0.0", () => {
   console.log("listening on port" + port);
 });
+
+// mongoimport --uri mongodb+srv://brunaandreis:gW9FO8ek51y5OFzm@cluster0.0fxk81l.mongodb.net/myFlixDB --collection users --type json --file C:\Users\Bruna\Documents\Projects\careerfoundry\movies-api\users.json
+
+// mongoexport -d cfDB -c users -o users.json

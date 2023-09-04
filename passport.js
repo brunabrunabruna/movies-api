@@ -8,6 +8,7 @@ let Users = models.User;
 let JWTSrategy = passportJWT.Strategy;
 let ExtractJWT = passportJWT.ExtractJwt;
 
+//loggin in for the first time
 passport.use(
   new LocalStrategy(
     { usernameField: "username", passwordField: "password" },
@@ -39,6 +40,7 @@ passport.use(
   )
 );
 
+//upon first login generates jwt token for future auth
 passport.use(
   new JWTSrategy(
     {
