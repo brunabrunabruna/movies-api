@@ -8,6 +8,8 @@ const mongoose = require("mongoose");
 const Models = require("./models");
 const { error } = require("console");
 
+require("dotenv").config();
+
 //validates username, pw, etc. user imputs on the server side. To make sure there is no malicious code, and that the imputs follow the desired constrains.
 const { check, validationResult } = require("express-validator");
 
@@ -25,11 +27,12 @@ const Users = Models.User;
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
+console.log(process.env.CONNECTION_URI);
+
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
-
 const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
@@ -196,8 +199,24 @@ app.post(
 //update user by username
 app.put(
   "/users/:username",
+
   passport.authenticate("jwt", { session: false }),
+  [
+    // check([field in req.body to validate], [error message if validation fails]).[validation method]();
+    check("username", "username is required").isLength({ min: 5 }),
+    check(
+      "username",
+      "username contains non alphanumeric characters - not allowed!"
+    ).isAlphanumeric(),
+    check("password", "password is required").not().isEmpty(),
+    check("email", "email is not valid").isEmail(),
+  ],
   async (request, response) => {
+    //check validation object for errors
+    let errors = validationResult(request);
+    if (!errors.isEmpty()) {
+      return response.status(422).json({ errors: errors.array() });
+    }
     //CONDITION TO CHECK USERNAME HERE
     if (request.user.username !== request.params.username) {
       return response.status(400).send("permission denied");
