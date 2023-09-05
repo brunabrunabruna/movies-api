@@ -20,7 +20,7 @@ const Users = Models.User;
 //   useUnifiedTopology: true,
 // });
 
-//connects to online mongoDB database
+//connects to online mongoDB database -- first param is an environment variable, so the data about my mongodb(username,pw) is not exposed on my github
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -33,19 +33,21 @@ app.use(bodyParser.urlencoded({ extended: true }));
 //cors controls which domains have access to my api, right now just localhost does
 const cors = require("cors");
 
-let allowedOrigins = ["http://localhost:8080"];
+// let allowedOrigins = [
+//   "http://localhost:8080 https://movies-api-render-0a0q.onrender.com/ ",
+// ];
 app.use(
   cors({
     origin: (origin, callback) => {
       if (!origin) {
         return callback(null, true);
       }
-      if (allowedOrigins.indexOf(origin) === -1) {
-        let message =
-          "the CORS policy for this application doesnt allow access from origin " +
-          origin;
-        return callback(new Error(message), false);
-      }
+      // if (allowedOrigins.indexOf(origin) === -1) {
+      //   let message =
+      //     "the CORS policy for this application doesnt allow access from origin " +
+      //     origin;
+      //   return callback(new Error(message), false);
+      // }
       return callback(null, true);
     },
   })
