@@ -21,7 +21,7 @@ const Users = Models.User;
 // });
 
 //connects to online mongoDB database -- first param is an environment variable, so the data about my mongodb(username,pw) is not exposed on my github
-mongoose.connect("https://movies-api-render-0a0q.onrender.com/", {
+mongoose.connect(`"${process.env.CONNECTION_URI}"`, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 });
