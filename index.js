@@ -8,7 +8,7 @@ const mongoose = require("mongoose");
 const Models = require("./models");
 const { error } = require("console");
 
-require("dotenv").config();
+// require("dotenv").config();
 
 //validates username, pw, etc. user imputs on the server side. To make sure there is no malicious code, and that the imputs follow the desired constrains.
 const { check, validationResult } = require("express-validator");
@@ -34,31 +34,33 @@ mongoose.connect(process.env.CONNECTION_URI, {
   useUnifiedTopology: true,
 });
 const app = express();
+
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 //cors controls which domains have access to my api, right now just localhost does
 const cors = require("cors");
+app.use(cors());
 
 // let allowedOrigins = [
 //   "http://localhost:8080 https://movies-api-render-0a0q.onrender.com/ ",
 // ];
-app.use(
-  cors({
-    origin: (origin, callback) => {
-      if (!origin) {
-        return callback(null, true);
-      }
-      // if (allowedOrigins.indexOf(origin) === -1) {
-      //   let message =
-      //     "the CORS policy for this application doesnt allow access from origin " +
-      //     origin;
-      //   return callback(new Error(message), false);
-      // }
-      return callback(null, true);
-    },
-  })
-);
+// app.use(
+//   cors({
+//     origin: (origin, callback) => {
+//       if (!origin) {
+//         return callback(null, true);
+//       }
+//       if (allowedOrigins.indexOf(origin) === -1) {
+//         let message =
+//           "the CORS policy for this application doesnt allow access from origin " +
+//           origin;
+//         return callback(new Error(message), false);
+//       }
+//       return callback(null, true);
+//     },
+//   })
+// );
 let auth = require("./auth")(app);
 const passport = require("passport");
 require("./passport");
@@ -100,52 +102,68 @@ app.get(
 
 // Return data (description, genre, director, image URL, whether it’s featured or not) about a single movie by title to the user;
 
-app.get("/movies/:title", async (request, response) => {
-  await Movies.findOne({ title: request.params.title })
-    .then((movie) => {
-      response.status(200).json(movie);
-    })
-    .catch((err) => {
-      console.log(err);
-      response.status(500).send(`error: ${err}`);
-    });
-});
+app.get(
+  "/movies/:title",
+  passport.authenticate("jwt", { session: false }),
+  async (request, response) => {
+    await Movies.findOne({ title: request.params.title })
+      .then((movie) => {
+        response.status(200).json(movie);
+      })
+      .catch((err) => {
+        console.log(err);
+        response.status(500).send(`error: ${err}`);
+      });
+  }
+);
 //Return data about a genre (description) by name/title (e.g., “Thriller”);
-app.get("/movies/genres/:genreName", async (request, response) => {
-  await Movies.findOne({ "genre.name": request.params.genreName })
-    .then((genre) => {
-      response.status(200).json(genre);
-    })
-    .catch((err) => {
-      console.log(err);
-      response.status(500).send(`error: ${err}`);
-    });
-});
+app.get(
+  "/movies/genres/:genreName",
+  passport.authenticate("jwt", { session: false }),
+  async (request, response) => {
+    await Movies.findOne({ "genre.name": request.params.genreName })
+      .then((genre) => {
+        response.status(200).json(genre);
+      })
+      .catch((err) => {
+        console.log(err);
+        response.status(500).send(`error: ${err}`);
+      });
+  }
+);
 
 // Return data about a director (bio, birth year, death year) by name;
-app.get("/movies/directors/:directorName", async (request, response) => {
-  await Movies.findOne({ "director.name": request.params.directorName })
-    .then((director) => {
-      response.status(200).json(director);
-    })
-    .catch((err) => {
-      console.log(err);
-      response.status(500).send(`error: ${err}`);
-    });
-});
+app.get(
+  "/movies/directors/:directorName",
+  passport.authenticate("jwt", { session: false }),
+  async (request, response) => {
+    await Movies.findOne({ "director.name": request.params.directorName })
+      .then((director) => {
+        response.status(200).json(director);
+      })
+      .catch((err) => {
+        console.log(err);
+        response.status(500).send(`error: ${err}`);
+      });
+  }
+);
 
 //USERS
 //get all users
-app.get("/users", async (request, response) => {
-  await Users.find({})
-    .then((users) => {
-      response.status(201).json(users);
-    })
-    .catch((error) => {
-      console.log(err);
-      response.status(400).send(err);
-    });
-});
+// app.get(
+//   "/users",
+//   // passport.authenticate("jwt", { session: false }),
+//   async (request, response) => {
+//     await Users.find({})
+//       .then((users) => {
+//         response.status(201).json(users);
+//       })
+//       .catch((error) => {
+//         console.log(err);
+//         response.status(400).send(err);
+//       });
+//   }
+// );
 
 // Allow new users to register;
 app.post(
@@ -298,6 +316,10 @@ app.use((err, req, res, next) => {
 });
 
 const port = process.env.PORT || 8080;
+
+console.log(process.env.PORT);
+console.log(port);
+
 app.listen(port, "0.0.0.0", () => {
   console.log("listening on port" + port);
 });
