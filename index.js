@@ -248,51 +248,63 @@ app.put(
 
 //add favorite movie to users list
 
-app.post("/users/:username/movies/:movieID", async (req, res) => {
-  await Users.findOneAndUpdate(
-    { username: req.params.username },
-    {
-      $addToSet: { favoriteMovies: req.params.movieID },
-    },
-    { new: true }
-  ) // This line makes sure that the updated document is returned
-    .then((updatedUser) => {
-      res.json(updatedUser);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error:" + err);
-    });
-});
+app.post(
+  "/users/:username/movies/:movieID",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await Users.findOneAndUpdate(
+      { username: req.params.username },
+      {
+        $addToSet: { favoriteMovies: req.params.movieID },
+      },
+      { new: true }
+    ) // This line makes sure that the updated document is returned
+      .then((updatedUser) => {
+        res.json(updatedUser);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error:" + err);
+      });
+  }
+);
 
 //deletes favorite movie to users list
-app.delete("/users/:username/movies/:movieID", async (req, res) => {
-  await Users.findOneAndUpdate(
-    { username: req.params.username },
-    {
-      $pull: { favoriteMovies: req.params.movieID },
-    },
-    { new: true }
-  ) // This line makes sure that the updated document is returned
-    .then((updatedUser) => {
-      res.json(updatedUser);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).send("Error:" + err);
-    });
-});
+app.delete(
+  "/users/:username/movies/:movieID",
+  passport.authenticate("jwt", { session: false }),
+  async (req, res) => {
+    await Users.findOneAndUpdate(
+      { username: req.params.username },
+      {
+        $pull: { favoriteMovies: req.params.movieID },
+      },
+      { new: true }
+    ) // This line makes sure that the updated document is returned
+      .then((updatedUser) => {
+        res.json(updatedUser);
+      })
+      .catch((err) => {
+        console.error(err);
+        res.status(500).send("Error:" + err);
+      });
+  }
+);
 
 //deletes user
-app.delete("/users/:username/", async (request, response) => {
-  await Users.findOneAndRemove({ username: request.params.username })
-    .then((removedUser) => {
-      response.status(200).send(`user ${removedUser} was deleted`);
-    })
-    .catch((err) => {
-      response.status(500).send(`error: ${err}`);
-    });
-});
+app.delete(
+  "/users/:username/",
+  passport.authenticate("jwt", { session: false }),
+  async (request, response) => {
+    await Users.findOneAndRemove({ username: request.params.username })
+      .then((removedUser) => {
+        response.status(200).send(`user ${removedUser} was deleted`);
+      })
+      .catch((err) => {
+        response.status(500).send(`error: ${err}`);
+      });
+  }
+);
 //error handling middleware function
 //should be last, but before app.listen()
 app.use((err, req, res, next) => {
