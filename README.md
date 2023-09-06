@@ -1,4 +1,4 @@
-# movies-api
+# It's Movie Night 🎬
 
 Objective:
 To build the server-side component of a “movies” web application. The web
