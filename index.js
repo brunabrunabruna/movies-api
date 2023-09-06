@@ -27,7 +27,7 @@ const Users = Models.User;
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
-console.log(process.env.CONNECTION_URI);
+console.log("CONNCECTION_URI: " + process.env.CONNECTION_URI);
 
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
@@ -315,7 +315,8 @@ app.use((err, req, res, next) => {
   res.status(500).send("something broke");
 });
 
-const port = process.env.PORT || 8080;
+// const port = process.env.PORT || 8080;
+const port = 10000;
 
 console.log(process.env.PORT);
 console.log(port);
@@ -323,7 +324,3 @@ console.log(port);
 app.listen(port, "0.0.0.0", () => {
   console.log("listening on port" + port);
 });
-
-// mongoimport --uri mongodb+srv://brunaandreis:gW9FO8ek51y5OFzm@cluster0.0fxk81l.mongodb.net/myFlixDB --collection users --type json --file C:\Users\Bruna\Documents\Projects\careerfoundry\movies-api\users.json
-
-// mongoexport -d cfDB -c users -o users.json
