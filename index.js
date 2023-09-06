@@ -27,7 +27,7 @@ const Users = Models.User;
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
 // });
-console.log("CONNCECTION_URI: " + process.env.CONNECTION_URI);
+// console.log("CONNCECTION_URI: " + process.env.CONNECTION_URI);
 
 mongoose.connect(process.env.CONNECTION_URI, {
   useNewUrlParser: true,
@@ -38,9 +38,9 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-//cors controls which domains have access to my api, right now just localhost does
 const cors = require("cors");
 app.use(cors());
+//cors controls which domains have access to my api
 
 // let allowedOrigins = [
 //   "http://localhost:8080 https://movies-api-render-0a0q.onrender.com/ ",
@@ -149,21 +149,6 @@ app.get(
 );
 
 //USERS
-//get all users
-// app.get(
-//   "/users",
-//   // passport.authenticate("jwt", { session: false }),
-//   async (request, response) => {
-//     await Users.find({})
-//       .then((users) => {
-//         response.status(201).json(users);
-//       })
-//       .catch((error) => {
-//         console.log(err);
-//         response.status(400).send(err);
-//       });
-//   }
-// );
 
 // Allow new users to register;
 app.post(
@@ -318,8 +303,8 @@ app.use((err, req, res, next) => {
 const port = process.env.PORT || 8080;
 // const port = 10000;
 
-console.log(process.env.PORT);
-console.log(port);
+// console.log(process.env.PORT);
+// console.log(port);
 
 app.listen(port, "0.0.0.0", () => {
   console.log("listening on port" + port);
