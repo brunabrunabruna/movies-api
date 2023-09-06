@@ -1,3 +1,27 @@
 # movies-api
 
-idea: make option for user to get a randomised movie, either from a specific category( thriller, romance, comedy...), or a random option from all the movies. FOr people that dont want to spend hours browsing and choosing from netflix. They can just click random and watch that movie instead.
+Objective
+To build the server-side component of a “movies” web application. The web
+application will provide users with access to information about different
+movies, directors, and genres. Users will be able to sign up, update their
+personal information, and create a list of their favorite movies.
+
+## my role
+
+- Created an API with movies and users data.
+- Stored the data in a MongoDB database.
+- Added business logic using Mongoose.
+- Implemented authentication and authorization using basic HTTP auth and JWT.
+
+## App details
+
+- App is hosted on Render at: https://movies-api-render-0a0q.onrender.com/
+- App Documentation, with its endpoints list, provided here: https://movies-api-render-0a0q.onrender.com/documentation.html
+
+## technologies used
+
+- Node.js
+- Express.js
+- MongoDB
+- Postman
+- further npm packages. See package.json for details.
