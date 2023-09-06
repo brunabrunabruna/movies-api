@@ -224,13 +224,14 @@ app.put(
     if (request.user.username !== request.params.username) {
       return response.status(400).send("permission denied");
     }
+    let hashedPassword = Users.hashPassword(request.body.password);
 
     await Users.findOneAndUpdate(
       { username: request.params.username },
       {
         $set: {
           username: request.body.username,
-          password: request.body.password,
+          password: hashedPassword,
           email: request.body.email,
           birthday: request.body.birthday,
         },
