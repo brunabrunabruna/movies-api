@@ -315,8 +315,8 @@ app.use((err, req, res, next) => {
   res.status(500).send("something broke");
 });
 
-// const port = process.env.PORT || 8080;
-const port = 10000;
+const port = process.env.PORT || 8080;
+// const port = 10000;
 
 console.log(process.env.PORT);
 console.log(port);
