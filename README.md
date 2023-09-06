@@ -6,7 +6,7 @@ application will provide users with access to information about different
 movies, directors, and genres. Users will be able to sign up, update their
 personal information, and create a list of their favorite movies.
 
-## my role
+## My role
 
 - Created an API with movies and users data.
 - Routing HTTP requests with Express.
@@ -19,7 +19,7 @@ personal information, and create a list of their favorite movies.
 - App is hosted on Render at: https://movies-api-render-0a0q.onrender.com/
 - App Documentation, with its endpoints list, provided here: https://movies-api-render-0a0q.onrender.com/documentation.html
 
-## technologies used
+## Technologies used
 
 - Node.js
 - Express.js
