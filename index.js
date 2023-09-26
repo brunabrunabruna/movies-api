@@ -61,7 +61,9 @@ app.use(cors());
 //     },
 //   })
 // );
-let auth = require("./auth")(app);
+
+const setupLoginRoute = require("./auth");
+setupLoginRoute(app);
 const passport = require("passport");
 require("./passport");
 
@@ -149,6 +151,22 @@ app.get(
 );
 
 //USERS
+
+//gets all users
+app.get(
+	"/users",
+	passport.authenticate("jwt", { session: false }),
+	async (request, response) => {
+		await Users.find()
+			.then((users) => {
+				response.status(201).json();
+			})
+			.catch((err) => {
+				console.log(err);
+				response.status(500).send(`error: ${err}`);
+			});
+	}
+);
 
 // Allow new users to register;
 app.post(
