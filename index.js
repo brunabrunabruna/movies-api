@@ -220,7 +220,6 @@ app.post(
 //update user by username
 app.put(
 	"/users/:username",
-
 	passport.authenticate("jwt", { session: false }),
 	[
 		// check([field in req.body to validate], [error message if validation fails]).[validation method]();
@@ -239,6 +238,8 @@ app.put(
 			return response.status(422).json({ errors: errors.array() });
 		}
 		//CONDITION TO CHECK USERNAME HERE
+		console.log(JSON.stringify(request.body));
+
 		if (request.user.username !== request.params.username) {
 			return response.status(400).send("permission denied");
 		}
