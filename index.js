@@ -288,7 +288,7 @@ app.post(
 	}
 );
 
-//deletes favorite movie to users list
+//deletes favorite movie from users list
 app.delete(
 	"/users/:username/movies/:movieID",
 	passport.authenticate("jwt", { session: false }),
@@ -301,6 +301,7 @@ app.delete(
 			{ new: true }
 		) // This line makes sure that the updated document is returned
 			.then((updatedUser) => {
+				console.log(JSON.stringify(updatedUser));
 				res.json(updatedUser);
 			})
 			.catch((err) => {
