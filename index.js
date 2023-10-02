@@ -38,29 +38,33 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-const cors = require("cors");
-app.use(cors());
+//allows all sites to access my api:
+// const cors = require("cors");
+// app.use(cors());
+
 //cors controls which domains have access to my api
 
-// let allowedOrigins = [
-//   "http://localhost:8080 https://movies-api-render-0a0q.onrender.com/ ",
-// ];
-// app.use(
-//   cors({
-//     origin: (origin, callback) => {
-//       if (!origin) {
-//         return callback(null, true);
-//       }
-//       if (allowedOrigins.indexOf(origin) === -1) {
-//         let message =
-//           "the CORS policy for this application doesnt allow access from origin " +
-//           origin;
-//         return callback(new Error(message), false);
-//       }
-//       return callback(null, true);
-//     },
-//   })
-// );
+let allowedOrigins = [
+	"http://localhost:8080",
+	"https://movies-api-render-0a0q.onrender.com/",
+	"https://ghibli-archive.netlify.app/",
+];
+app.use(
+	cors({
+		origin: (origin, callback) => {
+			if (!origin) {
+				return callback(null, true);
+			}
+			if (allowedOrigins.indexOf(origin) === -1) {
+				let message =
+					"the CORS policy for this application doesnt allow access from origin " +
+					origin;
+				return callback(new Error(message), false);
+			}
+			return callback(null, true);
+		},
+	})
+);
 
 const setupLoginRoute = require("./auth");
 setupLoginRoute(app);
