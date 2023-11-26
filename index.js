@@ -7,6 +7,7 @@ const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const Models = require("./models");
 const { error } = require("console");
+const cors = require("cors");
 
 // require("dotenv").config();
 
@@ -37,10 +38,6 @@ const app = express();
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-
-//allows all sites to access my api:
-// const cors = require("cors");
-// app.use(cors());
 
 //cors controls which domains have access to my api
 

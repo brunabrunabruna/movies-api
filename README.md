@@ -13,6 +13,7 @@ personal information, and create a list of their favorite movies.
 - Stored the data in a MongoDB database.
 - Added business logic using Mongoose.
 - Implemented authentication and authorization using basic HTTP auth and JWT.
+- Hosted the API on Render.
 
 ## App details
 
@@ -25,4 +26,5 @@ personal information, and create a list of their favorite movies.
 - Express.js
 - MongoDB
 - Postman
+- Render
 - further npm packages. See package.json for details.
