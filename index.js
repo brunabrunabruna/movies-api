@@ -45,6 +45,7 @@ let allowedOrigins = [
 	"http://localhost:8080",
 	"https://movies-api-render-0a0q.onrender.com/",
 	"https://ghibli-archive.netlify.app/",
+	"http://localhost:4200/",
 ];
 app.use(
 	cors({
