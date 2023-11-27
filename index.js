@@ -66,7 +66,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // );
 
 // allows all sites to access my api:
-const cors = require("cors");
+// const cors = require("cors");
 app.use(cors());
 
 const setupLoginRoute = require("./auth");
